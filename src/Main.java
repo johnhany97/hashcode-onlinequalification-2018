@@ -29,7 +29,7 @@ public class Main {
         	line = br.readLine();
         	splited = line.split(" ");
         	int[] arr = Arrays.asList(splited).stream().mapToInt(Integer::parseInt).toArray();
-        	ridesList.add(new Ride(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]));
+        	ridesList.add(new Ride(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], i));
         }
         ridesList.sort(new RideComparator());
     }  catch (FileNotFoundException e) {

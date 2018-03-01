@@ -2,6 +2,7 @@ import java.util.Comparator;
 
 public class Ride {
 	
+	public int index;
 	public int rowStart;
 	public int colStart;
 	public int rowFinish;
@@ -9,15 +10,17 @@ public class Ride {
 	public int earliestStart;
 	public int latestFinish;
 	public Boolean taken;
+	public boolean done;
+	public int stepDone;
 	
-	
-	public Ride(int rs, int cs, int rf, int cf, int es, int lf) {
+	public Ride(int rs, int cs, int rf, int cf, int es, int lf, int index) {
 		this.rowStart = rs;
 		this.colStart = cs;
 		this.rowFinish = rf;
 		this.colFinish = cf;
 		this.earliestStart = es;
 		this.latestFinish = lf;
+		this.index = index;
 	}
 	
 	/**
@@ -116,6 +119,21 @@ public class Ride {
 	 */
 	public void setTaken(Boolean taken) {
 		this.taken = taken;
+	}
+	
+
+	/**
+	 * @return the index
+	 */
+	public int getIndex() {
+		return index;
+	}
+
+	/**
+	 * @param index the index to set
+	 */
+	public void setIndex(int index) {
+		this.index = index;
 	}
 
 }
