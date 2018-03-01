@@ -10,7 +10,7 @@ public class Ride {
 	Boolean taken;
 	
 	
-	public Row(int rs, int cs, int rf, int cf, int es, int lf) {
+	public Ride(int rs, int cs, int rf, int cf, int es, int lf) {
 		this.rowStart = rs;
 		this.colStart = cs;
 		this.rowFinish = rf;
