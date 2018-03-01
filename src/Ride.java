@@ -16,7 +16,7 @@ public class Ride {
 		this.rowFinish = rf;
 		this.colFinish = cf;
 		this.earliestStart = es;
-		this.latestFinish = ls;
+		this.latestFinish = lf;
 	}
 
 }

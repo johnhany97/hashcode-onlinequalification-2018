@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
   public static void main(String[] args) {
@@ -27,7 +28,8 @@ public class Main {
         for (int i = 0; i < rides; i++) {
         	line = br.readLine();
         	splited = line.split(" ");
-        	ridesList.add(new Ride(splited[0], splited[1], splited[2], splited[3], splited[4], splited[5]));
+        	int[] arr = Arrays.asList(splited).stream().mapToInt(Integer::parseInt).toArray();
+        	ridesList.add(new Ride(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]));
         }
     }  catch (FileNotFoundException e) {
 		e.printStackTrace();
