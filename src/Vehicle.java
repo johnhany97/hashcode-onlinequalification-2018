@@ -33,4 +33,8 @@ public class Vehicle {
 	public void setColumn(int column) {
 		this.column = column;
 	}
+
+	public int getDistance(int row, int column) {
+		return Math.abs(this.row - row) + Math.abs(this.column - column);
+	}
 }
