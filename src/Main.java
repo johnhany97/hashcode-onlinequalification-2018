@@ -50,12 +50,20 @@ public class Main {
 	
 	
 	//Algorithm
+	//First step
 	for (int i = 0; i < vehicles && i < rides; i++) {
-		if (feasible(ridesList.get(i), vehiclesList.get(i), 0))
+		if (feasible(ridesList.get(i), vehiclesList.get(i), 0)) {
 			vehiclesList.get(i).setRide(ridesList.get(i), vehicleTimeForGivenRide(ridesList.get(i), vehiclesList.get(i), 0));
+		}
 	}
+	for (int i = 0; i < vehicles; i++) {
+		if (vehiclesList.get(i).isTaken()) {
+			ridesList.remove(i);
+		}
+	}
+	//All the other steps
 	for (int i = 1; i < numberOfSteps; i++) {
-		ArrayList<Int> vehiclesFree = new ArrayList<Int>();
+		ArrayList<Integer> vehiclesFree = new ArrayList<Integer>();
 		//Update all cars
 		for  (int j = 0; j < vehiclesList.size(); j++) {
 			vehiclesList.get(j).update();

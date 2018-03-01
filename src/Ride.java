@@ -117,11 +117,10 @@ public class Ride {
 	/**
 	 * @param taken the taken to set
 	 */
-	public void setTaken(Boolean taken) {
-		this.taken = taken;
+	public void setTaken() {
+		this.taken = true;
 	}
 	
-
 	/**
 	 * @return the index
 	 */

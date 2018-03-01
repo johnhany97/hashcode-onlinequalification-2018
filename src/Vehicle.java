@@ -18,7 +18,8 @@ public class Vehicle {
 	public void setRide(Ride ride, int num) {
 		this.ride = ride;
 		ridesTaken.add(ride.getIndex());
-		this.availableIn = num;
+		this.availableIn = num - 1;
+		this.ride.setTaken();
 	}
 	
 	public void endRide() {
@@ -33,7 +34,8 @@ public class Vehicle {
 	}
 	
 	public void update() {
-		availableIn--;
+		if (availableIn == 0) endRide();
+		else availableIn--;
 	}
 	
 	/**
