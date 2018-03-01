@@ -34,8 +34,8 @@ public class Vehicle {
 	}
 	
 	public void update() {
+		availableIn--;
 		if (availableIn == 0) endRide();
-		else availableIn--;
 	}
 	
 	/**
