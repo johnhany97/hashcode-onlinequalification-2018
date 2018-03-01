@@ -15,6 +15,7 @@ public class Vehicle {
 
 	public void setRide(Ride ride) {
 		this.ride = ride;
+		ridesTaken.add(ride.getIndex());
 	}
 	
 	public Ride getRide() {

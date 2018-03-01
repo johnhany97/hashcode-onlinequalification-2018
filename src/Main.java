@@ -14,6 +14,7 @@ public class Main {
 	int bonusPerRide = 0;
 	int numberOfSteps = 0;
 	ArrayList<Ride> ridesList = new ArrayList<Ride>();
+	ArrayList<Vehicle> vehiclesList = new ArrayList<Vehicle>();
     BufferedReader br = null;
 	try {
 		br = new BufferedReader(new FileReader("a_example.in"));
@@ -32,6 +33,9 @@ public class Main {
         	ridesList.add(new Ride(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], i));
         }
         ridesList.sort(new RideComparator());
+        for (int i = 0; i < vehicles; i++) {
+        	vehiclesList.add(new Vehicle());
+        }
     }  catch (FileNotFoundException e) {
 		e.printStackTrace();
 	} catch (IOException e) {
@@ -43,5 +47,29 @@ public class Main {
 			e.printStackTrace();
 		}
     }
+	
+	
+	//Algorithm
+	for (int i = 0; i < vehicles && i < rides; i++) {
+		vehiclesList.get(i).setRide(ridesList.get(i));
+	}
+  }
+  
+  public static boolean feasible(Ride ride, Vehicle vehicle, int step) {
+	  int vtfgr = vehicleTimeForGivenRide(ride, vehicle, step);
+	  return step + vtfgr < ride.getLatestFinish();
+  }
+  
+  public static int vehicleTimeForGivenRide(Ride ride, Vehicle vehicle, int step) {
+	  //Distance to arrive
+	  int total = vehicle.getDistance(ride.getRowStart(), ride.getColStart());
+	  //Waiting time
+	  int arrival = total + step;
+	  if (arrival < ride.getEarliestStart()) {
+		  total += ride.getEarliestStart() - arrival;
+	  }
+	  //Trip time
+	  total += ride.getTotalTripDistance();
+	  return total;
   }
 }

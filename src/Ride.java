@@ -135,6 +135,10 @@ public class Ride {
 	public void setIndex(int index) {
 		this.index = index;
 	}
+	
+	public int getTotalTripDistance() {
+		return Math.abs(this.rowStart - this.rowFinish) + Math.abs(this.colStart - this.colFinish);
+	}
 
 }
 
