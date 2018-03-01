@@ -55,11 +55,18 @@ public class Main {
 			vehiclesList.get(i).setRide(ridesList.get(i), vehicleTimeForGivenRide(ridesList.get(i), vehiclesList.get(i), 0));
 	}
 	for (int i = 1; i < numberOfSteps; i++) {
+		ArrayList<Int> vehiclesFree = new ArrayList<Int>();
 		//Update all cars
 		for  (int j = 0; j < vehiclesList.size(); j++) {
 			vehiclesList.get(j).update();
+			if (!vehiclesList.get(j).isTaken()) {
+				vehiclesFree.add(j);
+			}
 		}
-		//
+		//Loop through available cars to pick rides??
+		for (int j = 0; j < vehiclesFree.size(); j++) {
+			
+		}
 	}
 	
   }
