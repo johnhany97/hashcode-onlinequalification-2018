@@ -1,3 +1,4 @@
+import java.util.Comparator;
 
 public class Ride {
 	
@@ -18,5 +19,15 @@ public class Ride {
 		this.earliestStart = es;
 		this.latestFinish = lf;
 	}
+	
+	public static int compare(Ride r1, Ride r2) {
+		return r1.earliestStart < r2.earliestStart ? -1 : r1.earliestStart == r2.earliestStart ? 0 : 1;
+	}
 
+}
+
+class RideComparator implements Comparator<Ride> {
+	public int compare(Ride r1, Ride r2) {
+		return r1.earliestStart < r2.earliestStart ? -1 : r1.earliestStart == r2.earliestStart ? 0 : 1;
+	}
 }
