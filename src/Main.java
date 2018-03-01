@@ -1,7 +1,11 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -17,7 +21,7 @@ public class Main {
 	ArrayList<Vehicle> vehiclesList = new ArrayList<Vehicle>();
     BufferedReader br = null;
 	try {
-		br = new BufferedReader(new FileReader("a_example.in"));
+		br = new BufferedReader(new FileReader("e_high_bonus.in"));
         String line = br.readLine();
         String[] splited = line.split(" ");
         row = Integer.parseInt(splited[0]);
@@ -71,17 +75,45 @@ public class Main {
 				vehiclesFree.add(j);
 			}
 		}
+		ArrayList<Integer> indicesChosen = new ArrayList<Integer>();
 		//Loop through available cars to pick rides??
 		for (int j = 0; j < vehiclesFree.size(); j++) {
-			
+			boolean notTaken = true;
+			for (int k = 0; k < ridesList.size() && notTaken; k++) {
+				if (feasible(ridesList.get(k), vehiclesList.get(j), i)) {
+					notTaken = false;
+                    vehiclesList.get(j).setRide(ridesList.get(k), vehicleTimeForGivenRide(ridesList.get(k), vehiclesList.get(j), i));
+                    indicesChosen.add(k);
+				}
+			}
 		}
+        //clean up list of rides
+        for (int j = 0; j < indicesChosen.size(); j++) {
+            ridesList.remove(indicesChosen.get(j));
+        }
+	}
+	
+	
+	Writer writer = null;
+
+	try {
+	    writer = new BufferedWriter(new OutputStreamWriter(
+	          new FileOutputStream("e_high_bonus.out"), "utf-8"));
+	    for (int i = 0; i < vehiclesList.size(); i++) {
+	    	writer.write(vehiclesList.get(i).outputOfVehicle());
+	    	writer.write('\n');
+	    }
+	} catch (IOException ex) {
+	    // Report
+	} finally {
+	   try {writer.close();} catch (Exception ex) {/*ignore*/}
 	}
 	
   }
   
   public static boolean feasible(Ride ride, Vehicle vehicle, int step) {
 	  int vtfgr = vehicleTimeForGivenRide(ride, vehicle, step);
-	  return step + vtfgr < ride.getLatestFinish();
+	  return step + vtfgr < ride.getLatestFinish() && !ride.taken;
   }
   
   public static int vehicleTimeForGivenRide(Ride ride, Vehicle vehicle, int step) {

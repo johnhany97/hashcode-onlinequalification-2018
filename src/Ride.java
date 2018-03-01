@@ -21,6 +21,7 @@ public class Ride {
 		this.earliestStart = es;
 		this.latestFinish = lf;
 		this.index = index;
+		this.taken = false;
 	}
 	
 	/**
