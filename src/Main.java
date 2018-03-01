@@ -51,8 +51,17 @@ public class Main {
 	
 	//Algorithm
 	for (int i = 0; i < vehicles && i < rides; i++) {
-		vehiclesList.get(i).setRide(ridesList.get(i));
+		if (feasible(ridesList.get(i), vehiclesList.get(i), 0))
+			vehiclesList.get(i).setRide(ridesList.get(i), vehicleTimeForGivenRide(ridesList.get(i), vehiclesList.get(i), 0));
 	}
+	for (int i = 1; i < numberOfSteps; i++) {
+		//Update all cars
+		for  (int j = 0; j < vehiclesList.size(); j++) {
+			vehiclesList.get(j).update();
+		}
+		//
+	}
+	
   }
   
   public static boolean feasible(Ride ride, Vehicle vehicle, int step) {

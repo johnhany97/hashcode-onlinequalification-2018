@@ -5,19 +5,58 @@ public class Vehicle {
 	private int row;
 	private int column;
 	private ArrayList<Integer> ridesTaken;
+	private int availableIn;
 	
 	public Vehicle() {
 		this.row = 0;
 		this.column = 0;
 		this.ride = null;
 		this.ridesTaken = new ArrayList<Integer>();
+		this.availableIn = 0;
 	}
 
-	public void setRide(Ride ride) {
+	public void setRide(Ride ride, int num) {
 		this.ride = ride;
 		ridesTaken.add(ride.getIndex());
+		this.availableIn = num;
 	}
 	
+	public void endRide() {
+		this.row = this.ride.getRowFinish();
+		this.column = this.ride.getColFinish();
+		this.availableIn = 0;
+		this.ride = null;
+	}
+	
+	public boolean isTaken() {
+		return ride == null;
+	}
+	
+	public void update() {
+		availableIn--;
+	}
+	
+	/**
+	 * @return the availableIn
+	 */
+	public int getAvailableIn() {
+		return availableIn;
+	}
+
+	/**
+	 * @param availableIn the availableIn to set
+	 */
+	public void setAvailableIn(int availableIn) {
+		this.availableIn = availableIn;
+	}
+
+	/**
+	 * @param ride the ride to set
+	 */
+	public void setRide(Ride ride) {
+		this.ride = ride;
+	}
+
 	public Ride getRide() {
 		return this.ride;
 	}
