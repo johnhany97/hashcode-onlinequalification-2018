@@ -77,16 +77,27 @@ public class Main {
 		}
 		ArrayList<Integer> indicesChosen = new ArrayList<Integer>();
 		//Loop through available cars to pick rides??
-		for (int j = 0; j < vehiclesFree.size(); j++) {
+		for (int j = 0; j < ridesList.size() && vehiclesFree.size() > 0; j++) {
 			boolean notTaken = true;
-			for (int k = 0; k < ridesList.size() && notTaken; k++) {
-				if (feasible(ridesList.get(k), vehiclesList.get(j), i)) {
+			for (int k = 0; k < vehiclesFree.size() && notTaken; k++) {
+				if (feasible(ridesList.get(j), vehiclesList.get(k), i)) {
 					notTaken = false;
-                    vehiclesList.get(j).setRide(ridesList.get(k), vehicleTimeForGivenRide(ridesList.get(k), vehiclesList.get(j), i));
-                    indicesChosen.add(k);
+					vehiclesList.get(k).setRide(ridesList.get(j), vehicleTimeForGivenRide(ridesList.get(j), vehiclesList.get(k), i));
+					indicesChosen.add(j);
+					vehiclesFree.remove(k);
 				}
 			}
 		}
+//		for (int j = 0; j < vehiclesFree.size(); j++) {
+//			boolean notTaken = true;
+//			for (int k = 0; k < ridesList.size() && notTaken; k++) {
+//				if (feasible(ridesList.get(k), vehiclesList.get(j), i)) {
+//					notTaken = false;
+//                    vehiclesList.get(j).setRide(ridesList.get(k), vehicleTimeForGivenRide(ridesList.get(k), vehiclesList.get(j), i));
+//                    indicesChosen.add(k);
+//				}
+//			}
+//		}
         //clean up list of rides
         for (int j = 0; j < indicesChosen.size(); j++) {
             ridesList.remove(indicesChosen.get(j));
